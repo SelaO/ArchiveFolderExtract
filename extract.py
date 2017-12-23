@@ -1,4 +1,4 @@
-// by Sela Oren Dec 2017
+# by Sela Oren Dec 2017
 import os
 import shutil
 from pyunpack import Archive

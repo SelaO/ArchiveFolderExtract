@@ -10,14 +10,5 @@ e.g if an archive has a single folder with all its contents that's what will be 
 
   control panel -> env -> user variables -> edit path -> add C:\Program Files\7-Zip
 
-* install pyunpack
-
-  in the console:
-
-  ```
-  pip install pyunpack
-  pip install patool
-  pip install entrypoint2
-  ```
-
 * move the script to the folder with all the archives and run it 
+

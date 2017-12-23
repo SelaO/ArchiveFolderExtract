@@ -1,7 +1,6 @@
 # by Sela Oren Dec 2017
 import os
 import shutil
-from pyunpack import Archive
 
 tmpFolder = './tmp/'
 shutil.rmtree(tmpFolder, True)
@@ -12,17 +11,18 @@ files = [f for f in os.listdir('.') if os.path.isfile(f) and (
 
 for filename in files:
     try:
-        Archive(filename).extractall(tmpFolder, True)
+        zip_file = "7z x \"%s\" -o\"%s\" -r" % (filename, tmpFolder)
+        os.system(zip_file)
         dirElements = [e for e in os.listdir(tmpFolder)]
-        if len(dirElements) > 1:  # archive doesn't fit so extract it to a folder with the archive name
-            folderName = './' + os.path.splitext(filename)[0]
-            Archive(filename).extractall(folderName, True)
+        if len(dirElements) > 1:  # archive doesn't fit my pattern
+            # rename tmp to filename instead of extracting again
+            os.rename(tmpFolder, os.path.splitext(filename)[0])
         else:   # archive fit so just move it out of tmp
             shutil.move(tmpFolder + dirElements[0], '.')
     except Exception as e:
         print("error: " + str(e))
-    # clean tmp folder
-    shutil.rmtree(tmpFolder, True)
+
+    shutil.rmtree(tmpFolder, True)  # clean tmp folder
     continue
 
 # TODO delete the script file
